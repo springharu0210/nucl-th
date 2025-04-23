@@ -51,8 +51,8 @@ if not WEBHOOK:
     exit(1)
 
 utc_now = datetime.datetime.utcnow().replace(tzinfo=datetime.timezone.utc)
-#one_hour_ago = utc_now - datetime.timedelta(hours=12)
-one_hour_ago = utc_now - datetime.timedelta(days=2)
+one_hour_ago = utc_now - datetime.timedelta(hours=12)
+#one_hour_ago = utc_now - datetime.timedelta(days=2)
 
 
 print(f"🔍 UTC now: {utc_now}")
