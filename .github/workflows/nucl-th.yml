@@ -1,1 +1,20 @@
+name: arXiv nucl-th notifier
+
+on:
+  # 10分ごとに自動実行（UTC）。JSTでは毎時 x:00, x:10, x:20, ...
+  schedule:
+    - cron:  '*/10 * * * *'
+  workflow_dispatch:    # 手動での実行も可
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies and run script
+        env:
+          DISCORD: ${{ secrets.WEBHOOK }}
+        run: |
+          pip install -r requirements.txt
+          python task.py
 
