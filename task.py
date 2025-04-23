@@ -12,7 +12,8 @@ ARXIV = ("http://export.arxiv.org/api/query?"
 WEBHOOK = os.environ["DISCORD"]
 
 utc_now = datetime.datetime.utcnow().replace(tzinfo=datetime.timezone.utc)
-one_hour_ago = utc_now - datetime.timedelta(hours=1)
+#one_hour_ago = utc_now - datetime.timedelta(hours=1)
+one_hour_ago = utc_now - datetime.timedelta(hours=12)  # ← ここを1→12に変更
 
 feed = feedparser.parse(ARXIV)
 for entry in feed.entries:
