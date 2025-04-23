@@ -80,7 +80,11 @@ for entry in feed.entries:
         "footer": {"text": updated.strftime("%Y-%m-%d %H:%M UTC")}
     }
 
+    #resp = requests.post(WEBHOOK, json={"embeds": [embed]})
     resp = requests.post(WEBHOOK, json={"embeds": [embed]})
+    print(f"📤 Sent to Discord → Status code: {resp.status_code}")
+    if resp.status_code != 204:
+        print(f"❗ Error response: {resp.text}")
     print(f"📤 Sent to Discord → Status code: {resp.status_code}")
     if resp.status_code != 204:
         print(f"❗ Error response: {resp.text}")
