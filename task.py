@@ -89,6 +89,6 @@ for entry in feed.entries:
     if resp.status_code != 204:
         print(f"❗ Error response: {resp.text}")
     count += 1
-
+    time.sleep(1)
 print(f"✅ Notification completed. Total sent: {count}")
 
