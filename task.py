@@ -72,13 +72,23 @@ for entry in feed.entries:
         print("⏭️ too old, skipping")
         break
 
+# 要約（summary）を全文そのまま表示（HTML → プレーンテキスト整形）
+    raw_summary = entry.summary
+    clean_summary = " ".join(raw_summary.split())  # 改行や連続スペースを除去
     embed = {
-        "title": entry.title.strip(),
-        "url": entry.id,
-        "description": textwrap.shorten(
-            " ".join(entry.summary.split()), width=180, placeholder="…"),
-        "footer": {"text": updated.strftime("%Y-%m-%d %H:%M UTC")}
+    "title": entry.title.strip(),
+    "url": entry.id,
+    "description": clean_summary,
+    "footer": {"text": updated.strftime("%Y-%m-%d %H:%M UTC")}
     }
+
+    # embed = {
+    #     "title": entry.title.strip(),
+    #     "url": entry.id,
+    #     "description": textwrap.shorten(
+    #         " ".join(entry.summary.split()), width=180, placeholder="…"),
+    #     "footer": {"text": updated.strftime("%Y-%m-%d %H:%M UTC")}
+    # }
 
     #resp = requests.post(WEBHOOK, json={"embeds": [embed]})
     resp = requests.post(WEBHOOK, json={"embeds": [embed]})
@@ -89,6 +99,5 @@ for entry in feed.entries:
     if resp.status_code != 204:
         print(f"❗ Error response: {resp.text}")
     count += 1
-    time.sleep(1)
 print(f"✅ Notification completed. Total sent: {count}")
 
