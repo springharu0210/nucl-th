@@ -40,10 +40,15 @@ nucl-th カテゴリの新着論文（12時間以内）を Discord に通知す�
 
 import os, datetime, textwrap, requests, feedparser
 
+# ARXIV = ("http://export.arxiv.org/api/query?"
+#          "search_query=cat:nucl-th"
+#          "&sortBy=submittedDate&sortOrder=descending"
+#          "&max_results=20")
 ARXIV = ("http://export.arxiv.org/api/query?"
          "search_query=cat:nucl-th"
-         "&sortBy=submittedDate&sortOrder=descending"
+         "&sortBy=lastUpdatedDate&sortOrder=descending"
          "&max_results=20")
+
 
 WEBHOOK = os.environ.get("DISCORD")
 if not WEBHOOK:
